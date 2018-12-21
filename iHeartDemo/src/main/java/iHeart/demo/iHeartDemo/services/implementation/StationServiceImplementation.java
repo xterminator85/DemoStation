@@ -1,5 +1,6 @@
 package iHeart.demo.iHeartDemo.services.implementation;
 
+import iHeart.demo.iHeartDemo.Exception.NotFoundException;
 import iHeart.demo.iHeartDemo.models.StationModel;
 import iHeart.demo.iHeartDemo.repositories.face.StationRepository;
 import iHeart.demo.iHeartDemo.services.face.StationService;
@@ -25,7 +26,7 @@ public class StationServiceImplementation implements StationService {
         Optional<StationModel> station = stationRepository.findById(id);
 
         if(!station.isPresent()) {
-            throw new Error(String.format("Station ID %d was not found.", id));
+            throw new NotFoundException(String.format("Station ID %d was not found.", id));
         }
 
         return station.get();
